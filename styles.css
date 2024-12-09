@@ -5,7 +5,7 @@ html, body {
 }
 
 body{
-    background-color: darkgray;
+    background-image: url('wood-411643_1920.jpg');
 }
 
 h1 {
@@ -16,20 +16,27 @@ h1 {
     margin-left: 500px;
     margin-right: 500px;
     border-radius: 7px;
-    background-color: darkslateblue;
+    background-color:burlywood;
+    color: aliceblue;
 }
 
 h2 {
     text-align: center;
+    color: aliceblue;
 }
 
 p {
     text-align: center;
+    color: aliceblue;
+    text-shadow: 4px 8px 12px white;
 }
 
 .santasTreats {
     display: flex;
     justify-content: space-around;
+    align-items: baseline;
+    padding-top: 80px;
+    position: relative;
 }
 
 #milk {
@@ -37,16 +44,22 @@ p {
     width: 300px;
     border-bottom: 10px solid black;
     padding-bottom: 1px ;
+    box-shadow: 0px 0px 4px 8px solid white ;
+   
 }
 
 #wholeCookie {
-    height: 300px;
-    width: 300px;
+    height: 230px;
+    width: 250px;
     border-bottom: 10px solid lemonchiffon;
     box-shadow: 3px 0px 0px solid lemonchiffon;
     border-right: 10px solid black;
     border-left: 10px solid black;
     padding-right: 25px;
+    padding-top:100px;
+    background-color:burlywood;
+    border-radius: 10px;
+    cursor: grab;
 }
 
 #halvCookie {
