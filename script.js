@@ -1,40 +1,53 @@
-let currentX = 0, currentY = 0;
+let isDragging = false; // tracker draggingen
+let offsetX = -10; 
+let offsetY = -10;
 
 const milk = document.getElementById("milk");
 const cookie = document.getElementById("wholeCookie");
 const message = document.getElementById("message");
- 
-cookie.addEventListener("dragstart", (event)=>{
-    event.dataTransfer.setData('text/plain',"");
-    // Lagre bidle kilde i dataTransfer :)
+
+cookie.addEventListener("mousedown", (event) => {
+    isDragging = true;
+    cookie.style.cursor = "grabbing"; // GJør at du kan grabbe cookien
+
+    const cookieRect = cookie.getBoundingClientRect();
+
+    // Calculate offset where the mouse is relative to the cookie
+    offsetX = event.clientX - cookieRect.left;
+    offsetY = event.clientY - cookieRect.top;
 });
 
-cookie.addEventListener("dragend", (event) =>{
-    // Få droppe lokasjonen
-    currentX = event.pageX - cookie.width / 2;
-    currentY = event.pageY - cookie.height / 2;
- 
-    // Oppdater positionen til kjeksen...
-    cookie.style.left = `${currentX}px`;
-    cookie.style.top = `${currentY}px`;
+document.addEventListener("mousemove", (event) => {
+    if (!isDragging) return;
 
+    const playAreaRect = document.querySelector('.santasTreats').getBoundingClientRect();
+
+    // oppdaterer cookien sin posisjon med hjelp av musepekeren.
+    const x = event.pageX - playAreaRect.left - offsetX;
+    const y = event.pageY - playAreaRect.top - offsetY;
+
+    cookie.style.left = `${x}px`;
+    cookie.style.top = `${y}px`;
+});
+
+document.addEventListener("mouseup", (event) => {
+    if (!isDragging) return;
+
+    isDragging = false;
+    cookie.style.cursor = "grab"; // Reseter musepekern
+
+    // skjekke om cookien er i melken
     const milkRect = milk.getBoundingClientRect();
     if (
-        currentX > milkRect.left &&
-        currentX < milkRect.right &&
-        currentY > milkRect.left &&
-        currentY < milkRect.bottom 
-
+        event.pageX > milkRect.left &&
+        event.pageX < milkRect.right &&
+        event.pageY > milkRect.top &&
+        event.pageY < milkRect.bottom
     ) {
         message.textContent = "Great job! You dipped the cookie!";
-        message.style.color = "green";
-      } else {
-        message.textContent = "Nah bro, do it like santa.";
+        message.style.color = "blue";
+    } else {
+        message.textContent = "Nah bro, do it like Santa.";
         message.style.color = "red";
-      }
-
-})
-
-
-
-
+    }
+});
