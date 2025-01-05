@@ -12,7 +12,7 @@ cookie.addEventListener("mousedown", (event) => {
 
     const cookieRect = cookie.getBoundingClientRect();
 
-    // Calculate offset where the mouse is relative to the cookie
+    // Mellomrommet mellom musepeker og cookie når du clicker den.
     offsetX = event.clientX - cookieRect.left;
     offsetY = event.clientY - cookieRect.top;
 });
@@ -20,7 +20,7 @@ cookie.addEventListener("mousedown", (event) => {
 document.addEventListener("mousemove", (event) => {
     if (!isDragging) return;
 
-    const playAreaRect = document.querySelector('.santasTreats').getBoundingClientRect();
+    const playAreaRect = document.querySelector('.santasTreats').getBoundingClientRect(); // gjør at cookien ikke kan gå ut av sonen
 
     // oppdaterer cookien sin posisjon med hjelp av musepekeren.
     const x = event.pageX - playAreaRect.left - offsetX;
@@ -30,11 +30,7 @@ document.addEventListener("mousemove", (event) => {
     cookie.style.top = `${y}px`;
 });
 
-document.addEventListener("mouseup", (event) => {
-    if (!isDragging) return;
-
-    isDragging = false;
-    cookie.style.cursor = "grab"; // Reseter musepekern
+eseter musepekern
 
     // skjekke om cookien er i melken
     const milkRect = milk.getBoundingClientRect();
