@@ -20,7 +20,7 @@ cookie.addEventListener("mousedown", (event) => {
 document.addEventListener("mousemove", (event) => {
     if (!isDragging) return;
 
-    const playAreaRect = document.querySelector('.santasTreats').getBoundingClientRect(); // gjør at cookien ikke kan gå ut av sonen
+    const playAreaRect = document.querySelector('.santasTreats').getBoundingClientRect(); // Kontrollerer spilleområdet
 
     // oppdaterer cookien sin posisjon med hjelp av musepekeren.
     const x = event.pageX - playAreaRect.left - offsetX;
@@ -30,7 +30,11 @@ document.addEventListener("mousemove", (event) => {
     cookie.style.top = `${y}px`;
 });
 
-eseter musepekern
+document.addEventListener("mouseup", (event) => {
+    if (!isDragging) return;
+
+    isDragging = false;
+    cookie.style.cursor = "default"; // Reseter musepekern
 
     // skjekke om cookien er i melken
     const milkRect = milk.getBoundingClientRect();

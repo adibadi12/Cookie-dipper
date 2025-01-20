@@ -83,7 +83,7 @@ p {
 }
 
 #wholeCookie:active {
-    transform: scale(0.9); /* Effekt når cookien trykkes ned */
+    transform: scale(0.9); /* Effekt når cookien trykkes på */
 }
 
 /* Melding-styling */
